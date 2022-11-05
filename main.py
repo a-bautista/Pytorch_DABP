@@ -3,7 +3,7 @@ import train
 import mnist
 import mnistm
 import model
-from utils import get_free_gpu
+from utils import get_free_gpu, visualize_input
 
 save_name = 'omg'
 
@@ -19,6 +19,7 @@ def main():
         classifier = model.Classifier().cuda()
         discriminator = model.Discriminator().cuda()
 
+        visualize_input()
         train.source_only(encoder, classifier, source_train_loader, target_train_loader, save_name)
         train.dann(encoder, classifier, discriminator, source_train_loader, target_train_loader, save_name)
 
